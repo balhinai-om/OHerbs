@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHerbs | متجر الأعشاب والزيوت الطبيعية</title>
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #e8f5e9;
+            --accent-orange: #ff9800;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fdfdfd;
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-area {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            max-width: 450px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            background-color: #f9f9f9;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .contact-top-bar {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            background: #f1f8e9;
+            padding: 5px 15px;
+            border-radius: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-top-bar a {
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-badge-container {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-ribbon {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .hero-banner-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 12px;
+            height: 280px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 60px;
+            overflow: hidden;
+        }
+
+        .hero-text-content h1 {
+            font-size: 36px;
+            color: #1b5e20;
+            margin-bottom: 10px;
+        }
+
+        .hero-text-content p {
+            font-size: 16px;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .hero-btn {
+            background-color: var(--primary-green);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .hero-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        .about-store-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px 20px;
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .about-store-section h2 {
+            color: var(--primary-green);
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .about-store-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .section-header {
+            max-width: 1200px;
+            margin: 40px auto 20px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+            color: var(--text-dark);
+        }
+
+        .categories-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .category-card-ui {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-card-ui:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-green);
+        }
+
+        .category-icon-frame {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-green);
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .products-grid-container {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .product-link-wrapper {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .product-card-ui {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card-ui:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            border-color: var(--primary-green);
+        }
+
+        .tag-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent-orange);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .image-container-frame {
+            width: 100%;
+            height: 180px;
+            background: #fafafa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        .product-info-panel {
+            text-align: right;
+        }
+
+        .prod-cat-tag {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .prod-title-heading {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .prod-description {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .stock-indicator {
+            font-size: 13px;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .footer-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 12px;
+        }
+
+        .price-tag-omr {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .add-to-cart-action-btn {
+            background-color: var(--primary-green);
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart-action-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-contacts {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-contacts a {
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .footer-contacts a:hover {
+            background: var(--primary-green);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .search-container {
+                max-width: 100%;
+                width: 100%;
+            }
+            .hero-banner {
+                height: auto;
+                flex-direction: column;
+                padding: 30px 20px;
+            }
+            .hero-text-content h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <span>🌿</span> OHerbs
+            </a>
+            
+            <div class="search-container">
+                <input type="text" placeholder="ابحث عن الأعشاب والزيوت والمنتجات الطبيعية...">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="user-actions">
+                <div class="contact-top-bar">
+                    <span>تواصل معنا:</span>
+                    <a href="https://wa.me/9689019910" target="_blank">+968 9019910</a>
+                </div>
+                <div class="cart-badge-container">
+                    <span>🛒</span>
+                    <span class="cart-status">0.000 ر.ع.</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-ribbon">
+        <div class="nav-links">
+            <a href="#">الرئيسية</a>
+            <a href="#">الأعشاب الطبية</a>
+            <a href="#">الزيوت العضوية</a>
+            <a href="#">الشاي والمشروبات</a>
+            <a href="#">من نحن</a>
+        </div>
+    </div>
+
+    <section class="hero-banner-section">
+        <div class="hero-banner">
+            <div class="hero-text-content">
+                <h1>صحّتك من خيرات الطبيعة</h1>
+                <p>منتجات ومستخلصات عشبية طبيعية 100% مختارة بعناية لأجلك ولعائلتك.</p>
+                <a href="#" class="hero-btn">تصفح المنتجات</a>
+            </div>
+            <div style="font-size: 120px;">🍃</div>
+        </div>
+    </section>
+
+    <section class="about-store-section">
+        <h2>عن متجر OHerbs</h2>
+        <p>مرحباً بكم في OHerbs، وجهتكم الأولى في سلطنة عمان للحصول على أجود مستخلصات الأعشاب الطبيعية، الزيوت العضوية النظيفة، والخلطات الصحية الفريدة. نحن نؤمن بقوة الطبيعة البديلة والتقليدية في تعزيز نمط الحياة الصحي اليومي، لذلك نحرص على جلب وتقديم منتجات برية أصلية ونقية خالية تماماً من الإضافات الكيميائية لتلبي تطلعاتكم الصحية بأعلى معايير الجودة الفاخرة.</p>
+    </section>
+
+    <div class="section-header">
+        <h2>تسوق حسب الفئات الرئيسية</h2>
+    </div>
+
+    <section class="categories-grid">
+        <div class="category-card-ui">
+            <div class="category-icon-frame">🌱</div>
+            <span>الأعشاب الطبية</span>
+        </div>
+        <div class="category-card-ui">
+            <div class="category-icon-frame">💧</div>
+            <span>الزيوت العضوية</span>
+        </div>
+        <div class="category-card-ui">
+            <div class="category-icon-frame">🍵</div>
+            <span>المشروبات الصحية</span>
+        </div>
+        <div class="category-card-ui">
+            <div class="category-icon-frame">💆</div>
+            <span>منتجات العناية</span>
+        </div>
+    </section>
+
+    <div class="section-header">
+        <h2>المنتجات المميزة الأكثر مبيعاً (اضغط على المنتج لعرض التفاصيل)</h2>
+    </div>
+
+    <section class="products-grid-container">
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=1'">
+            <div class="product-card-ui">
+                <span class="tag-badge">جديد</span>
+                <div class="image-container-frame">🍵</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">المشروبات الصحية</span>
+                    <h3 class="prod-title-heading">شاي الأعشاب المهدئ والمنظف</h3>
+                    <p class="prod-description">توليفة عشبية فاخرة تحتوي على البابونج البري، المليسا، وأوراق النعناع الفاخرة. تساعد على التخلص من الإجهاد اليومي، تحسن جودة النوم بعمق، وتريح تشنجات الجهاز الهضمي بشكل طبيعي وآمن 100%.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">2.500 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20شاي%20الأعشاب%20المهدئ','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=2'">
+            <div class="product-card-ui">
+                <span class="tag-badge">الأكثر طلباً</span>
+                <div class="image-container-frame">🧪</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">الزيوت العضوية</span>
+                    <h3 class="prod-title-heading">زيت اللبان العماني الحوجري النقي</h3>
+                    <p class="prod-description">مستخلص زيتي نقي 100% مقطر بعناية فائقة من حبات اللبان الحوجري الذكري الفاخر في جبال ظفار. يعزز نضارة البشرة بشكل مذهل، ويقاوم الخطوط الدقيقة والتجاعيد، كما يعمل كمطهر طبيعي برائحة زكية هادئة.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">8.900 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20زيت%20اللبان%20العماني','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=3'">
+            <div class="product-card-ui">
+                <div class="image-container-frame">🌼</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">الأعشاب الطبية</span>
+                    <h3 class="prod-title-heading">أزهار البابونج البرية المجففة</h3>
+                    <p class="prod-description">رؤوس وأزهار بابونج ذهبية كاملة، منتقاة يدوياً ومجففة بأساليب طبيعية مظللة لحفظ كامل قيمتها وزيوتها الطيارة الأساسية. خيارك الأمثل لعمل غسول طبيعي مهدئ للبشرة أو إعداد كوب دافئ ممتاز للاسترخاء.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">1.800 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20أزهار%20البابونج%20البرية','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=4'">
+            <div class="product-card-ui">
+                <span class="tag-badge">عرض خاص</span>
+                <div class="image-container-frame">🌿</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">الأعشاب الطبية</span>
+                    <h3 class="prod-title-heading">أوراق النعناع البري الفاخر</h3>
+                    <p class="prod-description">أوراق نعناع برية محصودة في أوج نضارتها ومجففة بطرق تقليدية تحافظ على زيوتها العطرية. تساعد في تحسين الهضم، تخفيف الصداع والتوتر، وتمنح الفم رائحة منعشة طبيعية. مثالية للشاي أو الاستنشاق العطري.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">2.100 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20أوراق%20النعناع%20البري','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=5'">
+            <div class="product-card-ui">
+                <div class="image-container-frame">🌹</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">الزيوت العضوية</span>
+                    <h3 class="prod-title-heading">زيت ورك الورد الطبيعي</h3>
+                    <p class="prod-description">زيت طبيعي مستخلص من بذور ورك الورد البري، غني بفيتامين C والعناصر المغذية. يعمل على تجديد خلايا البشرة، تفتيح البقع الداكنة، وعلاج الندبات والتشققات بشكل فعال وآمن جداً حتى للبشرة الحساسة.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">7.500 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20زيت%20ورك%20الورد','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=6'">
+            <div class="product-card-ui">
+                <span class="tag-badge">صحي</span>
+                <div class="image-container-frame">🫖</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">الأعشاب الطبية</span>
+                    <h3 class="prod-title-heading">جذور الزنجبيل المجفف الفاخر</h3>
+                    <p class="prod-description">جذور زنجبيل مختارة بعناية، مجففة بشكل طبيعي للحفاظ على كل فوائدها. يعتبر معجزة الشتاء لتدفئة الجسم، تحسين الدورة الدموية، تخفيف آلام الحلق والسعال، وتعزيز المناعة. يضاف للشاي أو الماء الساخن مباشرة.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">3.200 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20جذور%20الزنجبيل%20المجفف','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=7'">
+            <div class="product-card-ui">
+                <span class="tag-badge">مشهور جداً</span>
+                <div class="image-container-frame">⚫</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">الزيوت العضوية</span>
+                    <h3 class="prod-title-heading">زيت الحبة السوداء النقي</h3>
+                    <p class="prod-description">زيت مستخلص من بذور الحبة السوداء الأصلية، معروف منذ القدم بفوائده الصحية المذهلة. يقوي المناعة، يحسن صحة الجهاز التنفسي، يعالج الالتهابات، وينظف الجسم من السموم. يمكن تناوله أو استعماله خارجياً على الجلد والشعر.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">6.800 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20زيت%20الحبة%20السوداء','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=8'">
+            <div class="product-card-ui">
+                <div class="image-container-frame">🌾</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">المشروبات الصحية</span>
+                    <h3 class="prod-title-heading">عشبة الليمون الجافة المنعشة</h3>
+                    <p class="prod-description">أوراق عشبة الليمون الطازجة المجففة بعناية، تتميز برائحة حمضية منعشة وطعم لطيف. تساعد على تهدئة الأعصاب، تحسين الهضم، وخفض الحمى الطفيفة. مشروب صيفي مثالي بارد أو دافئ في فصل الشتاء.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">2.300 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20عشبة%20الليمون%20الجاف','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-link-wrapper" onclick="window.location.href='product.html?id=9'">
+            <div class="product-card-ui">
+                <span class="tag-badge">تنقية</span>
+                <div class="image-container-frame">🌬️</div>
+                <div class="product-info-panel">
+                    <span class="prod-cat-tag">الزيوت العضوية</span>
+                    <h3 class="prod-title-heading">زيت الكالبتوس الأساسي النقي</h3>
+                    <p class="prod-description">زيت أساسي طبيعي مقطر من أوراق الكالبتوس، معروف بقوته في تنقية الهواء والجهاز التنفسي. يساعد في تخفيف احتقان الأنف، السعال، والربو. استخدمه مع الناشر العطري أو دلك صدرك قليلاً منه مخفف بزيت آخر لتنفس أسهل وأعمق.</p>
+                    <div class="stock-indicator">✓ متوفر في المخزن</div>
+                    <div class="footer-price-row">
+                        <span class="price-tag-omr">5.400 ر.ع.</span>
+                        <button class="add-to-cart-action-btn" onclick="event.stopPropagation(); window.open('https://wa.me/9689019910?text=مرحباً%20OHerbs%20أود%20طلب%20زيت%20الكالبتوس','_blank');">طلب عبر الواتساب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <h3>متجر OHerbs للمنتجات الطبيعية</h3>
+        <p>يسعدنا خدمتكم وتلقي استفساراتكم وطلباتكم مباشرة</p>
+        <div class="footer-contacts">
+            <a href="https://wa.me/9689019910" target="_blank">💬 واتساب (WhatsApp): +968 9019910</a>
+            <a href="https://instagram.com" target="_blank">📸 انستجرام (Instagram): OHerbs_store</a>
+        </div>
+        <p style="font-size: 13px; margin-top: 20px; color: #bdc3c7;">&copy; 2026 جميع الحقوق محفوظة لمتجر OHerbs</p>
+    </footer>
+
+</body>
+</html>
