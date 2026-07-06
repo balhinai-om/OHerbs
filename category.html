@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">OHerbs | الفئة</title>
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #e8f5e9;
+            --accent-orange: #ff9800;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --border-color: #e0e0e0;
+        }
+
+        * { box-sizing: border-box; margin:0; padding:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color:#fdfdfd; color: var(--text-dark); }
+
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-area {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-top-bar {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            background: #f1f8e9;
+            padding: 5px 15px;
+            border-radius: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-top-bar a { color: var(--primary-green); text-decoration: none; }
+
+        .nav-ribbon {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-green); font-weight: 700; }
+
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a { color: var(--primary-green); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        .category-hero {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .category-hero-inner {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 12px;
+            padding: 35px 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .category-hero-icon {
+            width: 90px;
+            height: 90px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 46px;
+            flex-shrink: 0;
+        }
+
+        .category-hero-text h1 {
+            font-size: 28px;
+            color: #1b5e20;
+            margin-bottom: 6px;
+        }
+
+        .category-hero-text p {
+            font-size: 14px;
+            color: #2e7d32;
+        }
+
+        .section-header {
+            max-width: 1200px;
+            margin: 35px auto 20px;
+            padding: 0 20px;
+        }
+
+        .section-header h2 { font-size: 20px; color: var(--text-dark); }
+
+        .products-grid-container {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .product-link-wrapper { text-decoration: none; color: inherit; display: flex; cursor: pointer; }
+
+        .product-card-ui {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card-ui:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            border-color: var(--primary-green);
+        }
+
+        .tag-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent-orange);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .image-container-frame {
+            width: 100%;
+            height: 180px;
+            background: #fafafa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        .product-info-panel { text-align: right; }
+
+        .prod-cat-tag { font-size: 12px; color: var(--text-light); margin-bottom: 5px; display: block; }
+
+        .prod-title-heading { font-size: 16px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+
+        .prod-description {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .stock-indicator { font-size: 13px; color: var(--primary-green); font-weight: bold; margin-bottom: 15px; }
+
+        .footer-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 12px;
+        }
+
+        .price-tag-omr { font-size: 18px; font-weight: 700; color: var(--primary-green); }
+
+        .add-to-cart-action-btn {
+            background-color: var(--primary-green);
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart-action-btn:hover { background-color: #1b5e20; }
+
+        .empty-category {
+            max-width: 700px;
+            margin: 50px auto 80px;
+            text-align: center;
+            padding: 40px 20px;
+            background: #ffffff;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+        }
+
+        .empty-category .icon { font-size: 50px; margin-bottom: 15px; }
+        .empty-category p { color: var(--text-light); margin-bottom: 20px; }
+        .empty-category a {
+            color: #fff;
+            background: var(--primary-green);
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .not-found { max-width: 700px; margin: 80px auto; text-align: center; padding: 0 20px; }
+        .not-found a { color: var(--primary-green); font-weight: 700; }
+
+        footer {
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-contacts { margin: 15px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+        .footer-contacts a {
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .footer-contacts a:hover { background: var(--primary-green); }
+
+        @media (max-width: 768px) {
+            .category-hero-inner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <span>🌿</span> OHerbs
+            </a>
+            <div class="contact-top-bar">
+                <span>تواصل معنا:</span>
+                <a href="https://wa.me/9689019910" target="_blank">+968 9019910</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-ribbon">
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="category.html?cat=herbs" data-cat="herbs">الأعشاب الطبية</a>
+            <a href="category.html?cat=oils" data-cat="oils">الزيوت العضوية</a>
+            <a href="category.html?cat=drinks" data-cat="drinks">الشاي والمشروبات</a>
+            <a href="index.html#about">من نحن</a>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="index.html">الرئيسية</a> &nbsp;/&nbsp; <span id="breadcrumb-title"></span>
+    </div>
+
+    <div id="category-root"></div>
+
+    <footer>
+        <h3>متجر OHerbs للمنتجات الطبيعية</h3>
+        <p>يسعدنا خدمتكم وتلقي استفساراتكم وطلباتكم مباشرة</p>
+        <div class="footer-contacts">
+            <a href="https://wa.me/9689019910" target="_blank">💬 واتساب (WhatsApp): +968 9019910</a>
+            <a href="https://instagram.com" target="_blank">📸 انستجرام (Instagram): OHerbs_store</a>
+        </div>
+        <p style="font-size: 13px; margin-top: 20px; color: #bdc3c7;">&copy; 2026 جميع الحقوق محفوظة لمتجر OHerbs</p>
+    </footer>
+
+    <script>
+        // Same product data as product.html — keep both files in sync when editing content.
+        const PRODUCTS = [
+            { id:1, icon:"🍵", badge:"جديد", category:"المشروبات الصحية", title:"شاي الأعشاب المهدئ والمنظف", description:"توليفة عشبية فاخرة تحتوي على البابونج البري، المليسا، وأوراق النعناع الفاخرة. تساعد على التخلص من الإجهاد اليومي، تحسن جودة النوم بعمق، وتريح تشنجات الجهاز الهضمي بشكل طبيعي وآمن 100%.", price:"2.500", whatsappText:"مرحباً OHerbs أود طلب شاي الأعشاب المهدئ" },
+            { id:2, icon:"🧪", badge:"الأكثر طلباً", category:"الزيوت العضوية", title:"زيت اللبان العماني الحوجري النقي", description:"مستخلص زيتي نقي 100% مقطر بعناية فائقة من حبات اللبان الحوجري الذكري الفاخر في جبال ظفار. يعزز نضارة البشرة بشكل مذهل، ويقاوم الخطوط الدقيقة والتجاعيد، كما يعمل كمطهر طبيعي برائحة زكية هادئة.", price:"8.900", whatsappText:"مرحباً OHerbs أود طلب زيت اللبان العماني" },
+            { id:3, icon:"🌼", badge:"", category:"الأعشاب الطبية", title:"أزهار البابونج البرية المجففة", description:"رؤوس وأزهار بابونج ذهبية كاملة، منتقاة يدوياً ومجففة بأساليب طبيعية مظللة لحفظ كامل قيمتها وزيوتها الطيارة الأساسية. خيارك الأمثل لعمل غسول طبيعي مهدئ للبشرة أو إعداد كوب دافئ ممتاز للاسترخاء.", price:"1.800", whatsappText:"مرحباً OHerbs أود طلب أزهار البابونج البرية" },
+            { id:4, icon:"🌿", badge:"عرض خاص", category:"الأعشاب الطبية", title:"أوراق النعناع البري الفاخر", description:"أوراق نعناع برية محصودة في أوج نضارتها ومجففة بطرق تقليدية تحافظ على زيوتها العطرية. تساعد في تحسين الهضم، تخفيف الصداع والتوتر، وتمنح الفم رائحة منعشة طبيعية. مثالية للشاي أو الاستنشاق العطري.", price:"2.100", whatsappText:"مرحباً OHerbs أود طلب أوراق النعناع البري" },
+            { id:5, icon:"🌹", badge:"", category:"الزيوت العضوية", title:"زيت ورك الورد الطبيعي", description:"زيت طبيعي مستخلص من بذور ورك الورد البري، غني بفيتامين C والعناصر المغذية. يعمل على تجديد خلايا البشرة، تفتيح البقع الداكنة، وعلاج الندبات والتشققات بشكل فعال وآمن جداً حتى للبشرة الحساسة.", price:"7.500", whatsappText:"مرحباً OHerbs أود طلب زيت ورك الورد" },
+            { id:6, icon:"🫖", badge:"صحي", category:"الأعشاب الطبية", title:"جذور الزنجبيل المجفف الفاخر", description:"جذور زنجبيل مختارة بعناية، مجففة بشكل طبيعي للحفاظ على كل فوائدها. يعتبر معجزة الشتاء لتدفئة الجسم، تحسين الدورة الدموية، تخفيف آلام الحلق والسعال، وتعزيز المناعة. يضاف للشاي أو الماء الساخن مباشرة.", price:"3.200", whatsappText:"مرحباً OHerbs أود طلب جذور الزنجبيل المجفف" },
+            { id:7, icon:"⚫", badge:"مشهور جداً", category:"الزيوت العضوية", title:"زيت الحبة السوداء النقي", description:"زيت مستخلص من بذور الحبة السوداء الأصلية، معروف منذ القدم بفوائده الصحية المذهلة. يقوي المناعة، يحسن صحة الجهاز التنفسي، يعالج الالتهابات، وينظف الجسم من السموم. يمكن تناوله أو استعماله خارجياً على الجلد والشعر.", price:"6.800", whatsappText:"مرحباً OHerbs أود طلب زيت الحبة السوداء" },
+            { id:8, icon:"🌾", badge:"", category:"المشروبات الصحية", title:"عشبة الليمون الجافة المنعشة", description:"أوراق عشبة الليمون الطازجة المجففة بعناية، تتميز برائحة حمضية منعشة وطعم لطيف. تساعد على تهدئة الأعصاب، تحسين الهضم، وخفض الحمى الطفيفة. مشروب صيفي مثالي بارد أو دافئ في فصل الشتاء.", price:"2.300", whatsappText:"مرحباً OHerbs أود طلب عشبة الليمون الجاف" },
+            { id:9, icon:"🌬️", badge:"تنقية", category:"الزيوت العضوية", title:"زيت الكالبتوس الأساسي النقي", description:"زيت أساسي طبيعي مقطر من أوراق الكالبتوس، معروف بقوته في تنقية الهواء والجهاز التنفسي. يساعد في تخفيف احتقان الأنف، السعال، والربو. استخدمه مع الناشر العطري أو دلك صدرك قليلاً منه مخفف بزيت آخر لتنفس أسهل وأعمق.", price:"5.400", whatsappText:"مرحباً OHerbs أود طلب زيت الكالبتوس" }
+        ];
+
+        // Category definitions: slug -> { label, icon, matches (category names that belong to it) }
+        const CATEGORIES = {
+            herbs:  { label: "الأعشاب الطبية",     icon: "🌱", matches: ["الأعشاب الطبية"] },
+            oils:   { label: "الزيوت العضوية",      icon: "💧", matches: ["الزيوت العضوية"] },
+            drinks: { label: "المشروبات الصحية",    icon: "🍵", matches: ["المشروبات الصحية"] },
+            care:   { label: "منتجات العناية",      icon: "💆", matches: ["منتجات العناية"] }
+        };
+
+        function renderCategory() {
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('cat');
+            const cat = CATEGORIES[slug];
+            const root = document.getElementById('category-root');
+
+            if (!cat) {
+                root.innerHTML = `
+                    <div class="not-found">
+                        <h2>لم يتم العثور على هذه الفئة</h2>
+                        <p style="margin-top:15px;color:var(--text-light);">تأكد من الرابط أو عد للصفحة الرئيسية لتصفح جميع الفئات.</p>
+                        <p style="margin-top:20px;"><a href="index.html">العودة إلى الصفحة الرئيسية</a></p>
+                    </div>
+                `;
+                return;
+            }
+
+            document.title = `OHerbs | ${cat.label}`;
+            document.getElementById('page-title').textContent = `OHerbs | ${cat.label}`;
+            document.getElementById('breadcrumb-title').textContent = cat.label;
+
+            const activeLink = document.querySelector(`.nav-links a[data-cat="${slug}"]`);
+            if (activeLink) activeLink.classList.add('active');
+
+            const items = PRODUCTS.filter(p => cat.matches.includes(p.category));
+
+            let bodyHtml = `
+                <section class="category-hero">
+                    <div class="category-hero-inner">
+                        <div class="category-hero-icon">${cat.icon}</div>
+                        <div class="category-hero-text">
+                            <h1>${cat.label}</h1>
+                            <p>${items.length} منتج ${items.length === 1 ? '' : 'متوفر'} في هذه الفئة</p>
+                        </div>
+                    </div>
+                </section>
+            `;
+
+            if (items.length === 0) {
+                bodyHtml += `
+                    <div class="empty-category">
+                        <div class="icon">${cat.icon}</div>
+                        <h2>لا توجد منتجات في هذه الفئة حالياً</h2>
+                        <p>نعمل على إضافة منتجات جديدة قريباً — تواصل معنا عبر الواتساب لمعرفة المزيد.</p>
+                        <a href="https://wa.me/9689019910?text=${encodeURIComponent('مرحباً OHerbs، هل لديكم منتجات في فئة ' + cat.label + '؟')}" target="_blank">تواصل معنا</a>
+                    </div>
+                `;
+            } else {
+                bodyHtml += `
+                    <div class="section-header"><h2>جميع منتجات ${cat.label}</h2></div>
+                    <section class="products-grid-container">
+                        ${items.map(p => `
+                            <div class="product-link-wrapper" onclick="window.location.href='product.html?id=${p.id}'">
+                                <div class="product-card-ui">
+                                    ${p.badge ? `<span class="tag-badge">${p.badge}</span>` : ''}
+                                    <div class="image-container-frame">${p.icon}</div>
+                                    <div class="product-info-panel">
+                                        <span class="prod-cat-tag">${p.category}</span>
+                                        <h3 class="prod-title-heading">${p.title}</h3>
+                                        <p class="prod-description">${p.description}</p>
+                                        <div class="stock-indicator">✓ متوفر في المخزن</div>
+                                        <div class="footer-price-row">
+                                            <span class="price-tag-omr">${p.price} ر.ع.</span>
+                                            <button class="add-to-cart-action-btn" data-idx="${items.indexOf(p)}">طلب عبر الواتساب</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </section>
+                `;
+            }
+
+            root.innerHTML = bodyHtml;
+
+            // Wire up the WhatsApp buttons properly (avoids escaping issues with inline text)
+            document.querySelectorAll('.add-to-cart-action-btn').forEach((btn, i) => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    window.open(`https://wa.me/9689019910?text=${encodeURIComponent(items[i].whatsappText)}`, '_blank');
+                });
+            });
+        }
+
+        renderCategory();
+    </script>
+
+</body>
+</html>
